@@ -27,7 +27,9 @@ static int checkuser(void *NotUsed, int argc, char **argv, char **azColName)
         printf("Id %s login success.\n", argv[0]);
         ofstream jsonFile;
         jsonFile.open(usernameIn + ".json");
-        jsonFile << "{\"r\": 0,\"m\": \"success\"}";
+        string success = "{\"r\": 0,\"m\": \"success\"}";
+        jsonFile << success;
+        jsonFile.close();
         exit(1);
     }
     
@@ -119,7 +121,9 @@ int main(int argc, const char * argv[]) {
         fprintf(stdout, "User not found.\n");
         ofstream jsonFile;
         jsonFile.open(usernameIn + ".json");
-        jsonFile << "{\"m\": 0,\"m\": \"failure\"}";
+        string failure = "{\"m\": 0,\"m\": \"failure\"}";
+        jsonFile << failure;
+        jsonFile.close();
     }
     
     sqlite3_close(db);
